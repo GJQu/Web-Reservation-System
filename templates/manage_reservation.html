@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Manage Reservations
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2>Your Reservations</h2>
+        <ul>
+            {% for reservation in reservations %}
+                <li>
+                    {{ reservation.name }} ({{ reservation.day }} at {{ reservation.time }})
+                    <!-- Cancel button -->
+                    <form action="{{ url_for('cancel_reservation', reservation_id=reservation.id) }}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

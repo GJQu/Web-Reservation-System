@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Gallery
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Gallery</h2>
+        <div class="row">
+            {% for image in images %}
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ image.url }}" class="card-img-top img-fluid" alt="{{ image.alt }}">
+                        <!-- Optional: Add image description or other content here -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

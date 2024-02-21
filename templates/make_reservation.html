@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Make a Reservation
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h2 class="text-center mb-4">Class Schedule</h2>
+        <!-- Display class schedule -->
+        {% for class in class_schedule %}
+            <div class="mb-3">
+                <h3>{{ class.day }}: {{ class.name }}</h3>
+                <p>Time: {{ class.time }}</p>
+            </div>
+        {% endfor %}
+
+        <h2 class="text-center mt-5 mb-4">Make a Reservation</h2>
+        <!-- Reservation form -->
+        <form action="{{ url_for('make_reservation') }}" method="post">
+            <div class="mb-3">
+                <label for="classSelect">Select Class</label>
+                <select class="form-control" id="classSelect" name="class_id">
+                    {% for class in class_schedule %}
+                        <option value="{{ class.id }}">{{ class.name }} ({{ class.day }} at {{ class.time }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="firstNameInput">First Name</label>
+                <input type="text" class="form-control" id="firstNameInput" name="first_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="lastNameInput">Last Name</label>
+                <input type="text" class="form-control" id="lastNameInput" name="last_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="emailInput">Email Address</label>
+                <input type="email" class="form-control" id="emailInput" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Reservation</button>
+        </form>
+    </div>
+{% endblock %}
